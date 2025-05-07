@@ -14,6 +14,7 @@ pipeline {
                     sh 'docker build -t ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} .'
                     sh 'docker tag ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/uptime-backend:latest'
                 }
+                sh 'cp -r frontend/prisma backend/'
             }
         }
         
