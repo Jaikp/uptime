@@ -33,7 +33,7 @@ pipeline {
         
         stage('Push to DockerHub') {
             steps {
-                sh 'echo ${DOCKERHUB_CREDENTIALS} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin'
+                sh 'echo "Komal@4287" | docker login -u jaikp0 --password-stdin'
                 sh '''
                     docker push ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER}
                     docker push ${DOCKERHUB_USERNAME}/uptime-backend:latest
