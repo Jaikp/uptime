@@ -8,24 +8,28 @@ pipeline {
     }
     
     stages {
-        stage('Build Backend') {
-            steps {
-                dir('backend') {
-                    sh 'docker build -t ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} .'
-                    sh 'docker tag ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/uptime-backend:latest'
-                }
-                sh 'cp -r frontend/prisma backend/'
-            }
-        }
-        
+
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
                     sh 'docker build -t ${DOCKERHUB_USERNAME}/uptime-frontend:${BUILD_NUMBER} .'
                     sh 'docker tag ${DOCKERHUB_USERNAME}/uptime-frontend:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/uptime-frontend:latest'
                 }
+                sh 'cp -r frontend/prisma backend/'
             }
         }
+
+        stage('Build Backend') {
+            steps {
+                dir('backend') {
+                    sh 'docker build -t ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} .'
+                    sh 'docker tag ${DOCKERHUB_USERNAME}/uptime-backend:${BUILD_NUMBER} ${DOCKERHUB_USERNAME}/uptime-backend:latest'
+                }
+                
+            }
+        }
+        
+
         
         stage('Push to DockerHub') {
             steps {
