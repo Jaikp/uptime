@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        DOCKERHUB_USERNAME = 'ayushpanware037'
+        DOCKERHUB_USERNAME = 'ayushpanwar037'
         KUBE_CONFIG = credentials('kubeconfig')
     }
     
